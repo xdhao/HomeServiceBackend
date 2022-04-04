@@ -11,7 +11,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     ports:
-      - "3001:80"
+      - "4001:80"
     volumes:
       - /data:/app/Data
     networks:
