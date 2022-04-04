@@ -1,25 +1,22 @@
 version: '3.4'
 
 services:
-  homeservicebackend:
-    container_name: 'homeservicebackend'
-    image: 'homeservicebackend'
+  grass-homeservice:
+    container_name: grass-homeservicebackend
+    hostname: grass-homeservicebackend
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
     build:
-      context: .
+      context: ./
       dockerfile: Dockerfile
-    environment:
-      DB_CONNECTION: "Server=postgres;Port=5432;Database=homeservicedb;User Id=postgres;Password=1234;"
     ports:
-      - "5000:5000"
-    depends_on:
-     - postgres
+      - "3001:80"
+    volumes:
+      - /data:/app/Data
+    networks:
+      - global
 
-  postgres:
-    image: postgres
-    container_name: 'postgres'
-    environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "1234"
-      POSTGRES_DB: "homeservicebd"
-    ports:
-      - "5432:5432"
+networks:
+  global:
+    external: true
