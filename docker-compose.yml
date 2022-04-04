@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  homeservicebackend:
+    container_name: 'homeservicebackend'
+    image: 'homeservicebackend'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DB_CONNECTION: "Server=postgres;Port=5432;Database=homeservicedb;User Id=postgres;Password=1234;"
+    ports:
+      - "5000:5000"
+    depends_on:
+     - postgres
+
+  postgres:
+    image: postgres
+    container_name: 'postgres'
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "1234"
+      POSTGRES_DB: "homeservicebd"
+    ports:
+      - "5432:5432"
