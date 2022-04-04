@@ -2,8 +2,8 @@ version: '3.4'
 
 services:
   grass-homeservice:
-    container_name: grass-homeservicebackend
-    hostname: grass-homeservicebackend
+    container_name: grass-homeservice
+    hostname: grass-homeservice
     restart: always
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
