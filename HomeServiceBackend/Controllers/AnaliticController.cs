@@ -18,8 +18,8 @@ namespace HomeServiceBackend.Controllers
             db = context;
         }
 
-        [HttpGet("countAllWorksHours")]
-        public IEnumerable<Count> countAllWorksHours()
+        [HttpGet("countAllWorksHours/{year}")]
+        public IEnumerable<Count> countAllWorksHours(int year)
         {
             List<Count> res = new List<Count>();
             var works = db.works.ToList();
@@ -29,7 +29,7 @@ namespace HomeServiceBackend.Controllers
             {
                 foreach (var fact in facts)
                 {
-                    if (fact.workid == work.id)
+                    if (fact.workid == work.id && fact.date.Year == year)
                     {
                         ch.work = work;
                         ch.declare(fact.date.Month, fact.hours);
@@ -44,8 +44,8 @@ namespace HomeServiceBackend.Controllers
             return res;
         }
 
-        [HttpGet("countWorkHoursById/{id}")]
-        public IEnumerable<Count> countWorkHoursById(int id)
+        [HttpGet("countWorkHoursById/{id}&&{year}")]
+        public IEnumerable<Count> countWorkHoursById(int id, int year)
         {
             List<Count> res = new List<Count>();
             var work = db.works.SingleOrDefault(x => x.id == id);
@@ -53,7 +53,7 @@ namespace HomeServiceBackend.Controllers
             var facts = db.facts.ToList();
             foreach (var fact in facts)
             {
-                if (fact.workid == work.id)
+                if (fact.workid == work.id && fact.date.Year == year)
                 {
                     ch.work = work;
                     ch.declare(fact.date.Month, fact.hours);
