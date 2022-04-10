@@ -28,15 +28,24 @@ namespace HomeServiceBackend.Controllers
         }
 
         [HttpGet("getEmployeeById/{id}")]
-        public Employees getEmployeeById(int id)
+        public dynamic getEmployeeById(int id)
         {
-            return db.employees.SingleOrDefault(x => x.id == id);
+            var res = new {
+                Employee = db.employees.SingleOrDefault(x => x.id == id),
+                func_name = db.employees_functions.SingleOrDefault(x => x.id == db.employees.SingleOrDefault(x => x.id == id).function_id).name
+            };
+            return res;
         }
 
         [HttpGet("getPropertyById/{id}")]
-        public Propertys getPropertyById(int id)
+        public dynamic getPropertyById(int id)
         {
-            return db.propertys.SingleOrDefault(x => x.id == id);
+            var res = new
+            {
+                Property = db.propertys.SingleOrDefault(x => x.id == id),
+                client = db.clients.SingleOrDefault(x => x.id == db.propertys.SingleOrDefault(x => x.id == id).client_id)
+            };
+            return res;
         }
 
         [HttpGet("getUnitById/{id}")]
@@ -52,9 +61,15 @@ namespace HomeServiceBackend.Controllers
         }
 
         [HttpGet("getWorkById/{id}")]
-        public Works getWorkById(int id)
+        public dynamic getWorkById(int id)
         {
-            return db.works.SingleOrDefault(x => x.id == id);
+            var res = new
+            {
+                Work = db.works.SingleOrDefault(x => x.id == id),
+                type_name = db.types_of_work.SingleOrDefault(x => x.id == db.works.SingleOrDefault(x => x.id == id).typesid).name,
+                unit_name = db.units.SingleOrDefault(x => x.id == db.works.SingleOrDefault(x => x.id == id).unitid).name
+            };
+            return res;
         }
 
         [HttpGet("getFunctionById/{id}")]
@@ -71,15 +86,38 @@ namespace HomeServiceBackend.Controllers
         }
 
         [HttpGet("getAllEmployees")]
-        public IEnumerable<Employees> getAllEmployees()
+        public dynamic getAllEmployees()
         {
-            return db.employees;
+            var emps = db.employees.ToList();
+            var res = new List<dynamic>();
+            foreach (var emp in emps)
+            {
+                var re = new
+                {
+                    Employee = db.employees.SingleOrDefault(x => x.id == emp.id),
+                    func_name = db.employees_functions.SingleOrDefault(x => x.id == db.employees.SingleOrDefault(x => x.id == emp.id).function_id).name
+                };
+                res.Add(re);
+            }
+
+            return res;
         }
 
         [HttpGet("getAllPropertys")]
-        public IEnumerable<Propertys> getAllPropertys()
+        public dynamic getAllPropertys()
         {
-            return db.propertys;
+            var propes = db.propertys.ToList();
+            var res = new List<dynamic>();
+            foreach (var pro in propes)
+            {
+                var re = new
+                {
+                    Property = db.propertys.SingleOrDefault(x => x.id == pro.id),
+                    client = db.clients.SingleOrDefault(x => x.id == db.propertys.SingleOrDefault(x => x.id == pro.id).client_id)
+                };
+                res.Add(re);
+            }
+            return res;
         }
 
         [HttpGet("getAllUnits")]
@@ -95,9 +133,21 @@ namespace HomeServiceBackend.Controllers
         }
 
         [HttpGet("getAllWorks")]
-        public IEnumerable<Works> getAllWorks()
+        public dynamic getAllWorks()
         {
-            return db.works;
+            var works = db.works.ToList();
+            var res = new List<dynamic>();
+            foreach (var wr in works)
+            {
+                var re = new
+                {
+                    Work = db.works.SingleOrDefault(x => x.id == wr.id),
+                    type_name = db.types_of_work.SingleOrDefault(x => x.id == db.works.SingleOrDefault(x => x.id == wr.id).typesid).name,
+                    unit_name = db.units.SingleOrDefault(x => x.id == db.works.SingleOrDefault(x => x.id == wr.id).unitid).name
+                };
+                res.Add(re);
+            }
+            return res;
         }
 
         [HttpGet("getAllFunctions")]
