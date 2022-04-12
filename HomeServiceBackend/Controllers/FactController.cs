@@ -119,5 +119,16 @@ namespace HomeServiceBackend.Controllers
             }
             return facts_fullinfo;
         }
+
+        [HttpDelete("deleteFact/{id}")]
+        public void deleteFact(int id)
+        {
+            var item = db.facts.FirstOrDefault(x => x.id == id);
+            if (item != null)
+            {
+                db.facts.Remove(item);
+                db.SaveChanges();
+            }
+        }
     }
 }

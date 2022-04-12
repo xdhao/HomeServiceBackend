@@ -18,8 +18,71 @@ namespace HomeServiceBackend.Controllers
             db = context;
         }
 
+        [HttpGet("getWorksPerfomanceRatio/{startdate}&&{enddate}")]
+        public dynamic getWorksPerfomanceRatio(DateTime startdate, DateTime enddate)
+        {
+            var allWorks = db.works.ToList();
+            var facts = db.facts.ToList();
+            var res = new List<dynamic>();
+            int usecount = 0;
+            foreach (var work in allWorks)
+            {
+                foreach (var fact in facts)
+                {
+                    if (fact.workid == work.id && (fact.date > startdate && fact.date < enddate))
+                    {
+                        usecount++;
+                    }
+                }
+                if (usecount > 0)
+                {
+                    var re = new
+                    {
+                        Workname = work.name,
+                        Count = usecount
+                    };
+                    res.Add(re);
+                    usecount = 0;
+                }
+            }
+            if (res.Count > 0)
+                return res;
+            else
+                return "No data available for current year/date range";
+        }
+
+        [HttpGet("getWorkingDays/{startdate}&&{enddate}")]
+        public dynamic getWorkingDays(DateTime startdate, DateTime enddate)
+        {
+            int weekends = 0;
+            int workweek = 0;
+            var facts = db.facts.ToList();
+            foreach (var fact in facts)
+            {
+                if (fact.date > startdate && fact.date < enddate)
+                {
+                    if (fact.date.DayOfWeek == DayOfWeek.Sunday || fact.date.DayOfWeek == DayOfWeek.Saturday)
+                        weekends++;
+                    else
+                        workweek++;
+                }
+            }
+            if (weekends > 0 || workweek > 0)
+            {
+                var res = new
+                {
+                    Weekends = weekends,
+                    Workweek = workweek
+                };
+                return res;
+            }
+            else 
+                return "No data available for current year/date range";
+        }
+
+
         [HttpGet("countAllWorksHours/{year}")]
-        public IEnumerable<Count> countAllWorksHours(int year)
+        public dynamic countAllWorksHours(int year)
         {
             List<Count> res = new List<Count>();
             var works = db.works.ToList();
@@ -41,11 +104,14 @@ namespace HomeServiceBackend.Controllers
                     ch = new Count(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
                 }      
             }
-            return res;
+            if (res.Count > 0)
+                return res;
+            else
+                return "No data available for current year/date range";
         }
 
         [HttpGet("countWorkHoursById/{id}&&{year}")]
-        public IEnumerable<Count> countWorkHoursById(int id, int year)
+        public dynamic countWorkHoursById(int id, int year)
         {
             List<Count> res = new List<Count>();
             var work = db.works.SingleOrDefault(x => x.id == id);
@@ -64,11 +130,14 @@ namespace HomeServiceBackend.Controllers
                 res.Add(ch);
                 ch = new Count(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
             }
-            return res;
+            if (res.Count > 0)
+                return res;
+            else
+                return "No data available for current year/date range";
         }
 
         [HttpGet("countAllWorksScope")]
-        public IEnumerable<Count> countAllWorksScope()
+        public dynamic countAllWorksScope()
         {
             List<Count> res = new List<Count>();
             var works = db.works.ToList();
@@ -90,11 +159,14 @@ namespace HomeServiceBackend.Controllers
                     ch = new Count(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
                 }
             }
-            return res;
+            if (res.Count > 0)
+                return res;
+            else
+                return "No data available for current year/date range";
         }
 
         [HttpGet("countWorkScopeById/{id}")]
-        public IEnumerable<Count> countWorkScopeById(int id)
+        public dynamic countWorkScopeById(int id)
         {
             List<Count> res = new List<Count>();
             var work = db.works.SingleOrDefault(x => x.id == id);
@@ -113,7 +185,10 @@ namespace HomeServiceBackend.Controllers
                 res.Add(ch);
                 ch = new Count(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
             }
-            return res;
+            if (res.Count > 0)
+                return res;
+            else
+                return "No data available for current year/date range"; ;
         }
     }
 }
