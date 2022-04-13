@@ -10,6 +10,9 @@ namespace HomeServiceBackend.Models
     {
         public int id { get; set; }
         public string fio { get; set; }
+        public string name { get; set; }
+        public string surname { get; set; }
+        public string patronymic { get; set; }
         public string email { get; set; }
         public string phone_number { get; set; }
     }
@@ -42,6 +45,7 @@ namespace HomeServiceBackend.Models
     {
         public int id { get; set; }
         public int function_id { get; set; }
+        public string fio { get; set; }
         public string name { get; set; }
         public string surname { get; set; }
         public string patronymic { get; set; }
