@@ -160,6 +160,7 @@ namespace HomeServiceBackend.Controllers
         [HttpPost("addClient")]
         public void addClient([FromBody] Clients client)
         {
+            client.fio = client.surname + ' ' + client.name + ' ' + client.patronymic;
             db.clients.Add(client);
             db.SaveChanges();
         }
@@ -167,6 +168,7 @@ namespace HomeServiceBackend.Controllers
         [HttpPost("addEmployee")]
         public void addEmployee([FromBody] Employees employee)
         {
+            employee.fio = employee.surname + ' ' + employee.name + ' ' + employee.patronymic;
             db.employees.Add(employee);
             db.SaveChanges();
         }
