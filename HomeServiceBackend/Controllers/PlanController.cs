@@ -71,7 +71,8 @@ namespace HomeServiceBackend.Controllers
             }
             if (item != null)
             {
-                db.plans.Remove(item);
+                //db.plans.Remove(item);
+                db.plans.FirstOrDefault(x => x.id == id).deleted = true;
                 db.SaveChanges();
             }
         }
@@ -80,7 +81,7 @@ namespace HomeServiceBackend.Controllers
         public IEnumerable<PlanInfo> getAllPlans()
         {
             List<PlanInfo> plans_with_emps = new List<PlanInfo>();
-            var plans = db.plans.ToList();
+            var plans = db.plans.Where(x => x.deleted == false).ToList();
             var emptoplan = db.employee_to_plan.ToList();
             foreach (var item in plans)
             {
@@ -105,7 +106,7 @@ namespace HomeServiceBackend.Controllers
         public IEnumerable<PlanInfo> getPlansByDate(DateTime date)
         {
             List<Plans> qplans = new List<Plans>();
-            var plans = db.plans.ToList();
+            var plans = db.plans.Where(x => x.deleted == false).ToList();
             foreach (var item in plans)
             {
                 if (item.date.Date == date.Date)

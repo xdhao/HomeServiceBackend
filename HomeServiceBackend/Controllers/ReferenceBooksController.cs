@@ -82,13 +82,13 @@ namespace HomeServiceBackend.Controllers
         [HttpGet("getAllClients")]
         public IEnumerable<Clients> getAllClients()
         {
-            return db.clients;
+            return db.clients.Where(x => x.deleted == false);
         }
 
         [HttpGet("getAllEmployees")]
         public dynamic getAllEmployees()
         {
-            var emps = db.employees.ToList();
+            var emps = db.employees.Where(x => x.deleted == false).ToList();
             var res = new List<dynamic>();
             foreach (var emp in emps)
             {
@@ -106,7 +106,7 @@ namespace HomeServiceBackend.Controllers
         [HttpGet("getAllPropertys")]
         public dynamic getAllPropertys()
         {
-            var propes = db.propertys.ToList();
+            var propes = db.propertys.Where(x => x.deleted == false).ToList();
             var res = new List<dynamic>();
             foreach (var pro in propes)
             {
@@ -123,19 +123,19 @@ namespace HomeServiceBackend.Controllers
         [HttpGet("getAllUnits")]
         public IEnumerable<Units> getAllUnits()
         {
-            return db.units;
+            return db.units.Where(x => x.deleted == false);
         }
 
         [HttpGet("getAllTypesofWork")]
         public IEnumerable<Types_of_work> getAllTypesofWork()
         {
-            return db.types_of_work;
+            return db.types_of_work.Where(x => x.deleted == false);
         }
 
         [HttpGet("getAllWorks")]
         public dynamic getAllWorks()
         {
-            var works = db.works.ToList();
+            var works = db.works.Where(x => x.deleted == false).ToList();
             var res = new List<dynamic>();
             foreach (var wr in works)
             {
@@ -153,7 +153,7 @@ namespace HomeServiceBackend.Controllers
         [HttpGet("getAllFunctions")]
         public IEnumerable<Employees_functions> getAllFunctions()
         {
-            return db.employees_functions;
+            return db.employees_functions.Where(x => x.deleted == false);
         }
 
         // CREATE
@@ -213,6 +213,7 @@ namespace HomeServiceBackend.Controllers
         public void updateClient(int id, [FromBody] Clients client)
         {
             client.id = id;
+            client.fio = client.surname + ' ' + client.name + ' ' + client.patronymic;
             db.clients.Update(client);
             db.SaveChanges();
         }
@@ -221,6 +222,7 @@ namespace HomeServiceBackend.Controllers
         public void updateEmployee(int id, [FromBody] Employees employee)
         {
             employee.id = id;
+            employee.fio = employee.surname + ' ' + employee.name + ' ' + employee.patronymic;
             db.employees.Update(employee);
             db.SaveChanges();
         }
@@ -273,7 +275,8 @@ namespace HomeServiceBackend.Controllers
             var item = db.clients.FirstOrDefault(x => x.id == id);
             if (item != null)
             {
-                db.clients.Remove(item);
+                //db.clients.Remove(item);
+                db.clients.FirstOrDefault(x => x.id == id).deleted = true;
                 db.SaveChanges();
             }
         }
@@ -284,7 +287,8 @@ namespace HomeServiceBackend.Controllers
             var item = db.employees.FirstOrDefault(x => x.id == id);
             if (item != null)
             {
-                db.employees.Remove(item);
+                //db.employees.Remove(item);
+                db.employees.FirstOrDefault(x => x.id == id).deleted = true;
                 db.SaveChanges();
             }
         }
@@ -295,7 +299,8 @@ namespace HomeServiceBackend.Controllers
             var item = db.propertys.FirstOrDefault(x => x.id == id);
             if (item != null)
             {
-                db.propertys.Remove(item);
+                //db.propertys.Remove(item);
+                db.propertys.FirstOrDefault(x => x.id == id).deleted = true;
                 db.SaveChanges();
             }
         }
@@ -306,7 +311,8 @@ namespace HomeServiceBackend.Controllers
             var item = db.units.FirstOrDefault(x => x.id == id);
             if (item != null)
             {
-                db.units.Remove(item);
+                //db.units.Remove(item);
+                db.units.FirstOrDefault(x => x.id == id).deleted = true;
                 db.SaveChanges();
             }
         }
@@ -317,7 +323,8 @@ namespace HomeServiceBackend.Controllers
             var item = db.types_of_work.FirstOrDefault(x => x.id == id);
             if (item != null)
             {
-                db.types_of_work.Remove(item);
+                //db.types_of_work.Remove(item);
+                db.types_of_work.FirstOrDefault(x => x.id == id).deleted = true;
                 db.SaveChanges();
             }
         }
@@ -328,7 +335,8 @@ namespace HomeServiceBackend.Controllers
             var item = db.works.FirstOrDefault(x => x.id == id);
             if (item != null)
             {
-                db.works.Remove(item);
+                //db.works.Remove(item);
+                db.works.FirstOrDefault(x => x.id == id).deleted = true;
                 db.SaveChanges();
             }
         }
@@ -339,7 +347,8 @@ namespace HomeServiceBackend.Controllers
             var item = db.employees_functions.FirstOrDefault(x => x.id == id);
             if (item != null)
             {
-                db.employees_functions.Remove(item);
+                //db.employees_functions.Remove(item);
+                db.employees_functions.FirstOrDefault(x => x.id == id).deleted = true;
                 db.SaveChanges();
             }
         }

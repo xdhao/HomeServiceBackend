@@ -15,6 +15,7 @@ namespace HomeServiceBackend.Models
         public string patronymic { get; set; }
         public string email { get; set; }
         public string phone_number { get; set; }
+        public bool deleted { get; set; }
     }
 
     public class Coordinates
@@ -52,6 +53,7 @@ namespace HomeServiceBackend.Models
         public DateTime birthdate { get; set; }
         public string email { get; set; }
         public string phone_number { get; set; }
+        public bool deleted { get; set; }
     }
 
     public class Facts
@@ -64,6 +66,7 @@ namespace HomeServiceBackend.Models
         public float count { get; set; }
         public int number_of_people { get; set; }
         public int hours { get; set; }
+        public bool deleted { get; set; }
     }
 
     public class Plans
@@ -75,6 +78,7 @@ namespace HomeServiceBackend.Models
         public float count { get; set; }
         public int number_of_people { get; set; }
         public int hours { get; set; }
+        public bool deleted { get; set; }
     }
 
     public class Propertys
@@ -85,6 +89,7 @@ namespace HomeServiceBackend.Models
         public int length { get; set; }
         public int width { get; set; }
         public int client_id { get; set; }
+        public bool deleted { get; set; }
     }
 
     public class Reports
@@ -93,6 +98,7 @@ namespace HomeServiceBackend.Models
         public int epid { get; set; }
         public string photo_url { get; set; }
         public string comment { get; set; }
+        public bool deleted { get; set; }
     }
 
     public class Routes
@@ -101,12 +107,14 @@ namespace HomeServiceBackend.Models
         public DateTime stime { get; set; }
         public DateTime etime { get; set; }
         public int epid { get; set; }
+        public bool deleted { get; set; }
     }
 
     public class Types_of_work
     {
         public int id { get; set; }
         public string name { get; set; }
+        public bool deleted { get; set; }
     }
 
     public class Units
@@ -114,6 +122,7 @@ namespace HomeServiceBackend.Models
         public int id { get; set; }
         public string name { get; set; }
         public string abbreviation { get; set; }
+        public bool deleted { get; set; }
     }
 
     public class Works
@@ -124,10 +133,12 @@ namespace HomeServiceBackend.Models
         public int typesid { get; set; }
         public int unitid { get; set; }
         public int hours { get; set; }
+        public bool deleted { get; set; }
     }
     public class Employees_functions
     {
         public int id { get; set; }
         public string name { get; set; }
+        public bool deleted { get; set; }
     }
 }

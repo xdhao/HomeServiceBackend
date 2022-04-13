@@ -25,9 +25,9 @@ namespace HomeServiceBackend.Controllers
         {
             TrackingController tracking = new TrackingController(db);
             List<FactInfo> facts_fullinfo = new List<FactInfo>();
-            var facts = db.facts.ToList();
-            var reports = db.reports.ToList();
-            var routes = db.routes.ToList();
+            var facts = db.facts.Where(x => x.deleted == false).ToList();
+            var reports = db.reports.Where(x => x.deleted == false).ToList();
+            var routes = db.routes.Where(x => x.deleted == false).ToList();
             var emptoplan = db.employee_to_plan.ToList();
             foreach (var item in facts)
             {
@@ -71,7 +71,7 @@ namespace HomeServiceBackend.Controllers
         {
             TrackingController tracking = new TrackingController(db);
             List<Facts> qfacts = new List<Facts>();
-            var facts = db.facts.ToList();
+            var facts = db.facts.Where(x => x.deleted == false).ToList();
             foreach (var item in facts)
             {
                 var dplan = db.plans.SingleOrDefault(x => x.id == item.planid);
@@ -81,8 +81,8 @@ namespace HomeServiceBackend.Controllers
                 }
             }
             List<FactInfo> facts_fullinfo = new List<FactInfo>();
-            var reports = db.reports.ToList();
-            var routes = db.routes.ToList();
+            var reports = db.reports.Where(x => x.deleted == false).ToList();
+            var routes = db.routes.Where(x => x.deleted == false).ToList();
             var emptoplan = db.employee_to_plan.ToList();
             foreach (var item in qfacts)
             {
@@ -126,7 +126,8 @@ namespace HomeServiceBackend.Controllers
             var item = db.facts.FirstOrDefault(x => x.id == id);
             if (item != null)
             {
-                db.facts.Remove(item);
+                //db.facts.Remove(item);
+                db.facts.FirstOrDefault(x => x.id == id).deleted = true;
                 db.SaveChanges();
             }
         }
