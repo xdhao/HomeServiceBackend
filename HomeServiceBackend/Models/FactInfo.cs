@@ -9,7 +9,7 @@ namespace HomeServiceBackend.Models
     {
         public Facts fact { get; set; }
         public Plans plan { get; set; }
-        public List<Employees> employees { get; set; }
+        public List<dynamic> employees { get; set; }
         public Propertys property { get; set; }
         public Clients client { get; set; }
         public IEnumerable<LogicalRoute> routes { get; set; }

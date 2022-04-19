@@ -87,14 +87,21 @@ namespace HomeServiceBackend.Controllers
             {
                 PlanInfo planinfo = new PlanInfo();
                 planinfo.plan = item;
-                planinfo.employees = new List<Employees>();
+                planinfo.employees = new List<dynamic>();
                 planinfo.property = db.propertys.SingleOrDefault(x => x.id == item.propertyid);
                 planinfo.client = db.clients.SingleOrDefault(x => x.id == planinfo.property.client_id);
                 foreach (var epid in emptoplan)
                 {
                     if (item.id == epid.planid)
                     {
-                        planinfo.employees.Add(db.employees.SingleOrDefault(x => x.id == epid.employeeid));
+                        var empx =
+                        new
+                        {
+                            Employee = db.employees.SingleOrDefault(x => x.id == epid.employeeid),
+                            Employees_functions = db.employees_functions.SingleOrDefault
+                            (x => x.id == db.employees.SingleOrDefault(x => x.id == epid.employeeid).function_id).name
+                        };
+                        planinfo.employees.Add(empx);
                     }
                 }
                 plans_with_emps.Add(planinfo);
@@ -120,17 +127,102 @@ namespace HomeServiceBackend.Controllers
             {
                 PlanInfo planinfo = new PlanInfo();
                 planinfo.plan = item;
-                planinfo.employees = new List<Employees>();
+                planinfo.employees = new List<dynamic>();
                 planinfo.property = db.propertys.SingleOrDefault(x => x.id == item.propertyid);
                 planinfo.client = db.clients.SingleOrDefault(x => x.id == planinfo.property.client_id);
                 foreach (var epid in emptoplan)
                 {
                     if (item.id == epid.planid)
                     {
-                        planinfo.employees.Add(db.employees.SingleOrDefault(x => x.id == epid.employeeid));
+                        var empx =
+                        new
+                        {
+                            Employee = db.employees.SingleOrDefault(x => x.id == epid.employeeid),
+                            Employees_functions = db.employees_functions.SingleOrDefault
+                            (x => x.id == db.employees.SingleOrDefault(x => x.id == epid.employeeid).function_id).name
+                        };
+                        planinfo.employees.Add(empx);
                     }
                 }
                 plans_with_emps.Add(planinfo);
+            }
+            return plans_with_emps;
+        }
+
+        [HttpGet("getPlanByEmployeeId/{id}")]
+        public IEnumerable<PlanInfo> getPlanByEmployeeId(int id)
+        {
+            List<PlanInfo> plans_with_emps = new List<PlanInfo>();
+            var plans = db.plans.Where(x => x.deleted == false).ToList();
+            var emptoplan = db.employee_to_plan.ToList();
+            foreach (var item in plans)
+            {
+                PlanInfo planinfo = new PlanInfo();
+                planinfo.plan = item;
+                planinfo.employees = new List<dynamic>();
+                planinfo.property = db.propertys.SingleOrDefault(x => x.id == item.propertyid);
+                planinfo.client = db.clients.SingleOrDefault(x => x.id == planinfo.property.client_id);
+                foreach (var epid in emptoplan)
+                {
+                    if (item.id == epid.planid)
+                    {
+                        var empx =
+                        new
+                        {
+                            Employee = db.employees.SingleOrDefault(x => x.id == epid.employeeid),
+                            Employees_functions = db.employees_functions.SingleOrDefault
+                            (x => x.id == db.employees.SingleOrDefault(x => x.id == epid.employeeid).function_id).name
+                        };
+                        planinfo.employees.Add(empx);
+                    }
+                }
+                if (planinfo.employees.Exists(x => x.Employee.id == id))
+                {
+                    plans_with_emps.Add(planinfo);
+                }
+            }
+            return plans_with_emps;
+        }
+
+        [HttpGet("getPlansByDateAndEmployeeId/{date}&&{id}")]
+        public IEnumerable<PlanInfo> getPlansByDateAndEmployeeId(DateTime date, int id)
+        {
+            List<Plans> qplans = new List<Plans>();
+            var plans = db.plans.Where(x => x.deleted == false).ToList();
+            foreach (var item in plans)
+            {
+                if (item.date.Date == date.Date)
+                {
+                    qplans.Add(item);
+                }
+            }
+            List<PlanInfo> plans_with_emps = new List<PlanInfo>();
+            var emptoplan = db.employee_to_plan.ToList();
+            foreach (var item in qplans)
+            {
+                PlanInfo planinfo = new PlanInfo();
+                planinfo.plan = item;
+                planinfo.employees = new List<dynamic>();
+                planinfo.property = db.propertys.SingleOrDefault(x => x.id == item.propertyid);
+                planinfo.client = db.clients.SingleOrDefault(x => x.id == planinfo.property.client_id);
+                foreach (var epid in emptoplan)
+                {
+                    if (item.id == epid.planid)
+                    {
+                        var empx =
+                        new
+                        {
+                            Employee = db.employees.SingleOrDefault(x => x.id == epid.employeeid),
+                            Employees_functions = db.employees_functions.SingleOrDefault
+                            (x => x.id == db.employees.SingleOrDefault(x => x.id == epid.employeeid).function_id).name
+                        };
+                        planinfo.employees.Add(empx);
+                    }
+                }
+                if (planinfo.employees.Exists(x => x.Employee.id == id))
+                {
+                    plans_with_emps.Add(planinfo);
+                }
             }
             return plans_with_emps;
         }
