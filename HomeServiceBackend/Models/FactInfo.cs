@@ -7,8 +7,8 @@ namespace HomeServiceBackend.Models
 {
     public class FactInfo
     {
-        public Facts fact { get; set; }
-        public Plans plan { get; set; }
+        public dynamic fact { get; set; }
+        public dynamic plan { get; set; }
         public List<dynamic> employees { get; set; }
         public Propertys property { get; set; }
         public Clients client { get; set; }

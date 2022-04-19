@@ -7,7 +7,7 @@ namespace HomeServiceBackend.Models
 {
     public class PlanInfo
     {
-        public Plans plan { get; set; }
+        public dynamic plan { get; set; }
         public List<dynamic> employees { get; set; }
         public Propertys property { get; set; }
         public Clients client { get; set; }

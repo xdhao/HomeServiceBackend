@@ -33,14 +33,23 @@ namespace HomeServiceBackend.Controllers
             {
                 FactInfo factinfo = new FactInfo();
                 factinfo.fact = item;
-                factinfo.plan = db.plans.SingleOrDefault(x => x.id == item.planid);
+                factinfo.fact = new
+                {
+                    Fact = item,
+                    Workname = db.works.SingleOrDefault(x => x.id == item.workid).name
+                };
+                factinfo.plan = new
+                {
+                    Plan = db.plans.SingleOrDefault(x => x.id == item.planid),
+                    Workname = db.works.SingleOrDefault(x => x.id == db.plans.SingleOrDefault(x => x.id == item.planid).workid).name
+                };
                 factinfo.employees = new List<dynamic>();
                 factinfo.reports = new List<RepInfo>();
-                factinfo.property = db.propertys.SingleOrDefault(x => x.id == factinfo.plan.propertyid);
+                factinfo.property = db.propertys.SingleOrDefault(x => x.id == db.plans.SingleOrDefault(x => x.id == item.planid).propertyid);
                 factinfo.client = db.clients.SingleOrDefault(x => x.id == factinfo.property.client_id);
                 foreach (var epid in emptoplan)
                 {
-                    if (factinfo.plan.id == epid.planid)
+                    if (factinfo.plan.Plan.id == epid.planid)
                     {
                         var empx =
                         new
@@ -84,15 +93,23 @@ namespace HomeServiceBackend.Controllers
             foreach (var item in facts)
             {
                 FactInfo factinfo = new FactInfo();
-                factinfo.fact = item;
-                factinfo.plan = db.plans.SingleOrDefault(x => x.id == item.planid);
+                factinfo.fact = new
+                {
+                    Fact = item,
+                    Workname = db.works.SingleOrDefault(x => x.id == item.workid).name
+                };
+                factinfo.plan = new
+                {
+                    Plan = db.plans.SingleOrDefault(x => x.id == item.planid),
+                    Workname = db.works.SingleOrDefault(x => x.id == db.plans.SingleOrDefault(x => x.id == item.planid).workid).name
+                };
                 factinfo.employees = new List<dynamic>();
                 factinfo.reports = new List<RepInfo>();
-                factinfo.property = db.propertys.SingleOrDefault(x => x.id == factinfo.plan.propertyid);
+                factinfo.property = db.propertys.SingleOrDefault(x => x.id == db.plans.SingleOrDefault(x => x.id == item.planid).propertyid);
                 factinfo.client = db.clients.SingleOrDefault(x => x.id == factinfo.property.client_id);
                 foreach (var epid in emptoplan)
                 {
-                    if (factinfo.plan.id == epid.planid)
+                    if (factinfo.plan.Plan.id == epid.planid)
                     {
                         var empx =
                         new
@@ -149,15 +166,23 @@ namespace HomeServiceBackend.Controllers
             foreach (var item in qfacts)
             {
                 FactInfo factinfo = new FactInfo();
-                factinfo.fact = item;
-                factinfo.plan = db.plans.SingleOrDefault(x => x.id == item.planid);
+                factinfo.fact = new
+                {
+                    Fact = item,
+                    Workname = db.works.SingleOrDefault(x => x.id == item.workid).name
+                };
+                factinfo.plan = new
+                {
+                    Plan = db.plans.SingleOrDefault(x => x.id == item.planid),
+                    Workname = db.works.SingleOrDefault(x => x.id == db.plans.SingleOrDefault(x => x.id == item.planid).workid).name
+                };
                 factinfo.employees = new List<dynamic>();
                 factinfo.reports = new List<RepInfo>();
-                factinfo.property = db.propertys.SingleOrDefault(x => x.id == factinfo.plan.propertyid);
+                factinfo.property = db.propertys.SingleOrDefault(x => x.id == db.plans.SingleOrDefault(x => x.id == item.planid).propertyid);
                 factinfo.client = db.clients.SingleOrDefault(x => x.id == factinfo.property.client_id);
                 foreach (var epid in emptoplan)
                 {
-                    if (factinfo.plan.id == epid.planid)
+                    if (factinfo.plan.Plan.id == epid.planid)
                     {
                         var empx =
                         new
@@ -210,15 +235,23 @@ namespace HomeServiceBackend.Controllers
             foreach (var item in qfacts)
             {
                 FactInfo factinfo = new FactInfo();
-                factinfo.fact = item;
-                factinfo.plan = db.plans.SingleOrDefault(x => x.id == item.planid);
+                factinfo.fact = new
+                {
+                    Fact = item,
+                    Workname = db.works.SingleOrDefault(x => x.id == item.workid).name
+                };
+                factinfo.plan = new
+                {
+                    Plan = db.plans.SingleOrDefault(x => x.id == item.planid),
+                    Workname = db.works.SingleOrDefault(x => x.id == db.plans.SingleOrDefault(x => x.id == item.planid).workid).name
+                };
                 factinfo.employees = new List<dynamic>();
                 factinfo.reports = new List<RepInfo>();
-                factinfo.property = db.propertys.SingleOrDefault(x => x.id == factinfo.plan.propertyid);
+                factinfo.property = db.propertys.SingleOrDefault(x => x.id == db.plans.SingleOrDefault(x => x.id == item.planid).propertyid);
                 factinfo.client = db.clients.SingleOrDefault(x => x.id == factinfo.property.client_id);
                 foreach (var epid in emptoplan)
                 {
-                    if (factinfo.plan.id == epid.planid)
+                    if (factinfo.plan.Plan.id == epid.planid)
                     {
                         var empx =
                         new

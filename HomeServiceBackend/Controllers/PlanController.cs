@@ -86,7 +86,11 @@ namespace HomeServiceBackend.Controllers
             foreach (var item in plans)
             {
                 PlanInfo planinfo = new PlanInfo();
-                planinfo.plan = item;
+                planinfo.plan = new
+                {
+                    Plan = item,
+                    Workname = db.works.SingleOrDefault(x => x.id == item.workid).name
+                };
                 planinfo.employees = new List<dynamic>();
                 planinfo.property = db.propertys.SingleOrDefault(x => x.id == item.propertyid);
                 planinfo.client = db.clients.SingleOrDefault(x => x.id == planinfo.property.client_id);
@@ -126,7 +130,11 @@ namespace HomeServiceBackend.Controllers
             foreach (var item in qplans)
             {
                 PlanInfo planinfo = new PlanInfo();
-                planinfo.plan = item;
+                planinfo.plan = new
+                {
+                    Plan = item,
+                    Workname = db.works.SingleOrDefault(x => x.id == item.workid).name
+                };
                 planinfo.employees = new List<dynamic>();
                 planinfo.property = db.propertys.SingleOrDefault(x => x.id == item.propertyid);
                 planinfo.client = db.clients.SingleOrDefault(x => x.id == planinfo.property.client_id);
@@ -158,7 +166,11 @@ namespace HomeServiceBackend.Controllers
             foreach (var item in plans)
             {
                 PlanInfo planinfo = new PlanInfo();
-                planinfo.plan = item;
+                planinfo.plan = new
+                {
+                    Plan = item,
+                    Workname = db.works.SingleOrDefault(x => x.id == item.workid).name
+                };
                 planinfo.employees = new List<dynamic>();
                 planinfo.property = db.propertys.SingleOrDefault(x => x.id == item.propertyid);
                 planinfo.client = db.clients.SingleOrDefault(x => x.id == planinfo.property.client_id);
@@ -201,7 +213,11 @@ namespace HomeServiceBackend.Controllers
             foreach (var item in qplans)
             {
                 PlanInfo planinfo = new PlanInfo();
-                planinfo.plan = item;
+                planinfo.plan = new
+                {
+                    Plan = item,
+                    Workname = db.works.SingleOrDefault(x => x.id == item.workid).name
+                };
                 planinfo.employees = new List<dynamic>();
                 planinfo.property = db.propertys.SingleOrDefault(x => x.id == item.propertyid);
                 planinfo.client = db.clients.SingleOrDefault(x => x.id == planinfo.property.client_id);
