@@ -26,6 +26,7 @@ namespace HomeServiceBackend.Controllers
             List<Employee_to_plan> Tasks_to_emp = new List<Employee_to_plan>();
             List<Routes> usroutes = new List<Routes>();
             List<List<Coordinates>> route = new List<List<Coordinates>>();
+            var polyline = new List<List<List<float>>>();
             var employee_to_plan = db.employee_to_plan.ToList();
             foreach (var fromid_emtoplan in employee_to_plan)
             {
@@ -49,6 +50,7 @@ namespace HomeServiceBackend.Controllers
             for (int i = 0; i < usroutes.Count; i++)
             {
                 route.Add(new List<Coordinates>());
+                polyline.Add(new List<List<float>>());
             }
             int index = 0;
             foreach (var each in usroutes)
@@ -60,13 +62,18 @@ namespace HomeServiceBackend.Controllers
                         && fromid_cdnts.time <= each.etime)
                     {
                         route[index].Add(fromid_cdnts);
+                        var flist = new List<float>();
+                        flist.Add(fromid_cdnts.lat);
+                        flist.Add(fromid_cdnts.lng);
+                        polyline[index].Add(flist);
                     }
                 }
                 index++;
             }
             var model = new LogicalRoute
             {
-                coordinates = route
+                routes = route,
+                polylines = polyline
             };
             yield return model;
 
@@ -78,6 +85,7 @@ namespace HomeServiceBackend.Controllers
             List<Employee_to_plan> Tasks_to_emp = new List<Employee_to_plan>();
             List<Routes> usroutes = new List<Routes>();
             List<List<Coordinates>> route = new List<List<Coordinates>>();
+            var polyline = new List<List<List<float>>>();
             var employee_to_plan = db.employee_to_plan.ToList();
             foreach (var fromid_emtoplan in employee_to_plan)
             {
@@ -101,6 +109,7 @@ namespace HomeServiceBackend.Controllers
             for (int i = 0; i < usroutes.Count; i++)
             {
                 route.Add(new List<Coordinates>());
+                polyline.Add(new List<List<float>>());
             }
             int index = 0;
             foreach (var each in usroutes)
@@ -112,13 +121,18 @@ namespace HomeServiceBackend.Controllers
                         && fromid_cdnts.time <= each.etime)
                     {
                         route[index].Add(fromid_cdnts);
+                        var flist = new List<float>();
+                        flist.Add(fromid_cdnts.lat);
+                        flist.Add(fromid_cdnts.lng);
+                        polyline[index].Add(flist);
                     }
                 }
                 index++;
             }
             var model = new LogicalRoute
             {
-                coordinates = route
+                routes = route,
+                polylines = polyline
             };
             yield return model;
 

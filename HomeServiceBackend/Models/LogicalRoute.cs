@@ -7,6 +7,7 @@ namespace HomeServiceBackend.Models
 {
     public class LogicalRoute
     {
-        public List<List<Coordinates>> coordinates { get; set; }
+        public List<List<Coordinates>> routes { get; set; }
+        public List<List<List<float>>> polylines { get; set; }
     }
 }
