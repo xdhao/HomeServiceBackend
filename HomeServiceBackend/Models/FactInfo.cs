@@ -12,7 +12,7 @@ namespace HomeServiceBackend.Models
         public List<dynamic> employees { get; set; }
         public Propertys property { get; set; }
         public Clients client { get; set; }
-        public IEnumerable<LogicalRoute> routes { get; set; }
+        public LogicalRoute routes { get; set; }
         public List<RepInfo> reports { get; set; }
     }
 

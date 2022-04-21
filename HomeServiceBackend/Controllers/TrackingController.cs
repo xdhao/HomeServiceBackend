@@ -21,12 +21,13 @@ namespace HomeServiceBackend.Controllers
         //Маршруты и координаты
 
         [HttpGet("getRoutesByEmployeeId/{id}")]
-        public IEnumerable<LogicalRoute> getRoutesByEmployeeId(int id)
+        public LogicalRoute getRoutesByEmployeeId(int id)
         {
             List<Employee_to_plan> Tasks_to_emp = new List<Employee_to_plan>();
             List<Routes> usroutes = new List<Routes>();
             List<List<Coordinates>> route = new List<List<Coordinates>>();
-            var polyline = new List<List<List<float>>>();
+            var polyroute = new List<PolyRoute>();
+            var polyline = new List<List<float>>();
             var employee_to_plan = db.employee_to_plan.ToList();
             foreach (var fromid_emtoplan in employee_to_plan)
             {
@@ -50,7 +51,7 @@ namespace HomeServiceBackend.Controllers
             for (int i = 0; i < usroutes.Count; i++)
             {
                 route.Add(new List<Coordinates>());
-                polyline.Add(new List<List<float>>());
+                polyroute.Add(new PolyRoute());
             }
             int index = 0;
             foreach (var each in usroutes)
@@ -65,27 +66,32 @@ namespace HomeServiceBackend.Controllers
                         var flist = new List<float>();
                         flist.Add(fromid_cdnts.lat);
                         flist.Add(fromid_cdnts.lng);
-                        polyline[index].Add(flist);
+                        polyline.Add(flist);
+                        polyroute[index].employeeId = fromid_cdnts.employeeid;
+                        polyroute[index].fio = db.employees.SingleOrDefault(x => x.id == fromid_cdnts.employeeid).fio;
                     }
                 }
+                polyroute[index].polyline = polyline;
+                polyline = new List<List<float>>();
                 index++;
             }
             var model = new LogicalRoute
             {
                 routes = route,
-                polylines = polyline
+                polyroutes = polyroute
             };
-            yield return model;
+            return model;
 
         }
 
         [HttpGet("getRoutesByPlanId/{id}")]
-        public IEnumerable<LogicalRoute> getRoutesByPlanId(int id)
+        public LogicalRoute getRoutesByPlanId(int id)
         {
             List<Employee_to_plan> Tasks_to_emp = new List<Employee_to_plan>();
             List<Routes> usroutes = new List<Routes>();
             List<List<Coordinates>> route = new List<List<Coordinates>>();
-            var polyline = new List<List<List<float>>>();
+            var polyroute = new List<PolyRoute>();
+            var polyline = new List<List<float>>();
             var employee_to_plan = db.employee_to_plan.ToList();
             foreach (var fromid_emtoplan in employee_to_plan)
             {
@@ -109,7 +115,7 @@ namespace HomeServiceBackend.Controllers
             for (int i = 0; i < usroutes.Count; i++)
             {
                 route.Add(new List<Coordinates>());
-                polyline.Add(new List<List<float>>());
+                polyroute.Add(new PolyRoute());
             }
             int index = 0;
             foreach (var each in usroutes)
@@ -124,17 +130,21 @@ namespace HomeServiceBackend.Controllers
                         var flist = new List<float>();
                         flist.Add(fromid_cdnts.lat);
                         flist.Add(fromid_cdnts.lng);
-                        polyline[index].Add(flist);
+                        polyline.Add(flist);
+                        polyroute[index].employeeId = fromid_cdnts.employeeid;
+                        polyroute[index].fio = db.employees.SingleOrDefault(x => x.id == fromid_cdnts.employeeid).fio;
                     }
                 }
+                polyroute[index].polyline = polyline;
+                polyline = new List<List<float>>();
                 index++;
             }
             var model = new LogicalRoute
             {
                 routes = route,
-                polylines = polyline
+                polyroutes = polyroute
             };
-            yield return model;
+            return model;
 
         }
 
