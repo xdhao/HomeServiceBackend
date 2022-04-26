@@ -86,6 +86,7 @@ namespace HomeServiceBackend.Controllers
         {
             List<Count> res = new List<Count>();
             var works = db.works.ToList();
+            var curwork = new Works();
             Count ch = new Count(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
             var facts = db.facts.ToList();
             foreach(var work in works)
@@ -94,11 +95,16 @@ namespace HomeServiceBackend.Controllers
                 {
                     if (fact.workid == work.id && fact.date.Year == year)
                     {
-                        ch.work = work;
+                        curwork = work;
+                        ch.work = new
+                        {
+                            workid = work.id,
+                            workname = work.name
+                        };
                         ch.declare(fact.date.Month, fact.hours);
                     }
                 }
-                if (ch.work == work)
+                if (curwork == work)
                 {
                     res.Add(ch);
                     ch = new Count(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -115,17 +121,23 @@ namespace HomeServiceBackend.Controllers
         {
             List<Count> res = new List<Count>();
             var work = db.works.SingleOrDefault(x => x.id == id);
+            var curwork = new Works();
             Count ch = new Count(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
             var facts = db.facts.ToList();
             foreach (var fact in facts)
             {
                 if (fact.workid == work.id && fact.date.Year == year)
                 {
-                    ch.work = work;
+                    curwork = work;
+                    ch.work = new
+                    {
+                        workid = work.id,
+                        workname = work.name
+                    };
                     ch.declare(fact.date.Month, fact.hours);
                 }
             }
-            if (ch.work == work)
+            if (curwork == work)
             {
                 res.Add(ch);
                 ch = new Count(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -141,6 +153,7 @@ namespace HomeServiceBackend.Controllers
         {
             List<Count> res = new List<Count>();
             var works = db.works.ToList();
+            var curwork = new Works();
             Count ch = new Count(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
             var facts = db.facts.ToList();
             foreach (var work in works)
@@ -149,11 +162,16 @@ namespace HomeServiceBackend.Controllers
                 {
                     if (fact.workid == work.id && fact.date.Year == year)
                     {
-                        ch.work = work;
+                        curwork = work;
+                        ch.work = new
+                        {
+                            workid = work.id,
+                            workname = work.name
+                        };
                         ch.declare(fact.date.Month, fact.count);
                     }
                 }
-                if (ch.work == work)
+                if (curwork == work)
                 {
                     res.Add(ch);
                     ch = new Count(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -170,17 +188,23 @@ namespace HomeServiceBackend.Controllers
         {
             List<Count> res = new List<Count>();
             var work = db.works.SingleOrDefault(x => x.id == id);
+            var curwork = new Works();
             Count ch = new Count(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
             var facts = db.facts.ToList();
             foreach (var fact in facts)
             {
                 if (fact.workid == work.id && fact.date.Year == year)
                 {
-                    ch.work = work;
+                    curwork = work;
+                    ch.work = new
+                    {
+                        workid = work.id,
+                        workname = work.name
+                    };
                     ch.declare(fact.date.Month, fact.count);
                 }
             }
-            if (ch.work == work)
+            if (curwork == work)
             {
                 res.Add(ch);
                 ch = new Count(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
