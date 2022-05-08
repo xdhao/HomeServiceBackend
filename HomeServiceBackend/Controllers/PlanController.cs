@@ -76,7 +76,22 @@ namespace HomeServiceBackend.Controllers
                 db.SaveChanges();
             }
         }
-        
+
+        [HttpPost("addFactFromPlan")]
+        public void addFactFromPlan([FromBody] Plans plan)
+        {
+            var newfact = new Facts();
+            newfact.planid = plan.id;
+            newfact.workid = plan.workid;
+            newfact.propertyid = plan.propertyid;
+            newfact.date = plan.date;
+            newfact.count = plan.count;
+            newfact.number_of_people = plan.number_of_people;
+            newfact.hours = plan.hours;
+            db.facts.Add(newfact);
+            db.SaveChanges();
+        }
+
         [HttpGet("getAllPlans")]
         public IEnumerable<PlanInfo> getAllPlans()
         {

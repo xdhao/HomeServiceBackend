@@ -214,5 +214,98 @@ namespace HomeServiceBackend.Controllers
             else
                 return "No data available for current year/date range"; ;
         }
+
+        [HttpGet("countMovingTimeAllEmployees/{year}")]
+        public dynamic countMovingTimeAllEmployees(int year)
+        {
+            var relres = new List<dynamic>();
+            var emps = db.employees.ToList();
+            var curemp = new Employees();
+            TimeSpan duration = new TimeSpan(0, 0, 0, 0);
+            TravelTime ch = new TravelTime(duration, duration, duration, duration, duration, duration, duration, duration, duration, duration, duration, duration);
+            var routes = db.routes.ToList();
+            foreach(var emp in emps)
+            {
+                foreach (var route in routes)
+                {
+                    var planid = db.employee_to_plan.SingleOrDefault(x => x.id == route.epid).planid;
+                    var plan = db.plans.SingleOrDefault(x => x.id == planid);
+                    if (plan.date.Year == year && db.employee_to_plan.SingleOrDefault(x => x.id == route.epid).employeeid == emp.id)
+                    {
+                        curemp = emp;
+                        ch.employee = new
+                        {
+                            empid = emp.id,
+                            empname = emp.fio
+                        };
+                        var routetime = route.etime.Subtract(route.stime);
+                        ch.declare(plan.date.Month, routetime);
+                    }
+                }
+                if (curemp == emp)
+                {
+                    var rres = new
+                    {
+                        employee = ch.employee,
+                        months = new List<string>()
+                    };
+                    foreach (var monthtime in ch.months)
+                    {
+                        rres.months.Add(monthtime.ToString());
+                    }
+                    relres.Add(rres);
+                    ch = new TravelTime(duration, duration, duration, duration, duration, duration, duration, duration, duration, duration, duration, duration);
+                }
+            }
+            if (relres.Count > 0)
+                return relres;
+            else
+                return "No data available for current year/date range"; ;
+        }
+
+        [HttpGet("countMovingTimeByEmployeeId/{id}&&{year}")]
+        public dynamic countMovingTimeByEmployeeId(int id, int year)
+        {
+            var relres = new List<dynamic>();
+            var emp = db.employees.SingleOrDefault(x => x.id == id);
+            var curemp = new Employees();
+            TimeSpan duration = new TimeSpan(0, 0, 0, 0);
+            TravelTime ch = new TravelTime(duration, duration, duration, duration, duration, duration, duration, duration, duration, duration, duration, duration);
+            var routes = db.routes.ToList();
+            foreach (var route in routes)
+            {
+                var planid = db.employee_to_plan.SingleOrDefault(x => x.id == route.epid).planid;
+                var plan = db.plans.SingleOrDefault(x => x.id == planid);
+                if (plan.date.Year == year && db.employee_to_plan.SingleOrDefault(x => x.id == route.epid).employeeid == emp.id)
+                {
+                    curemp = emp;
+                    ch.employee = new
+                    {
+                        empid = emp.id,
+                        empname = emp.fio
+                    };
+                    var routetime = route.etime.Subtract(route.stime);
+                    ch.declare(plan.date.Month, routetime);
+                }
+            }
+            if (curemp == emp)
+            {
+                var rres = new
+                {
+                    employee = ch.employee,
+                    months = new List<string>()
+                };
+                foreach (var monthtime in ch.months)
+                {
+                    rres.months.Add(monthtime.ToString());
+                }
+                relres.Add(rres);
+                ch = new TravelTime(duration, duration, duration, duration, duration, duration, duration, duration, duration, duration, duration, duration);
+            }
+            if (relres.Count > 0)
+                return relres;
+            else
+                return "No data available for current year/date range"; ;
+        }
     }
 }

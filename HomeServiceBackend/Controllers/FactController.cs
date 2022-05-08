@@ -286,6 +286,12 @@ namespace HomeServiceBackend.Controllers
             return facts_fullinfo;
         }
 
+        [HttpPost("addFact")]
+        public void addFact([FromBody] Facts newfact)
+        {
+            db.facts.Add(newfact);
+        }
+
         [HttpDelete("deleteFact/{id}")]
         public void deleteFact(int id)
         {
