@@ -5,11 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Sourse\GitHub\HomeServiceBackend\HomeServiceBackend\HomeServiceBackend.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Sourse\GitHub\HomeServiceBackend\HomeServiceBackend\HomeServiceBackend.xml</DocumentationFile>
+    <DocumentationFile>HomeServiceBackend.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
