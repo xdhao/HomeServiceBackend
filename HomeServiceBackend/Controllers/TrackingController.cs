@@ -20,6 +20,10 @@ namespace HomeServiceBackend.Controllers
 
         //Маршруты и координаты
 
+        /// <summary>
+        /// Gives the routes by ID of employee.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getRoutesByEmployeeId/{id}")]
         public LogicalRoute getRoutesByEmployeeId(int id)
         {
@@ -84,6 +88,10 @@ namespace HomeServiceBackend.Controllers
 
         }
 
+        /// <summary>
+        /// Gives the routes by ID of plan.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getRoutesByPlanId/{id}")]
         public LogicalRoute getRoutesByPlanId(int id)
         {
@@ -148,6 +156,10 @@ namespace HomeServiceBackend.Controllers
 
         }
 
+        /// <summary>
+        /// Gives the last coordinate of each employee.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getLastLocationAll")]
         public IEnumerable<Coordinates> getLastLocationAll()
         {
@@ -179,7 +191,10 @@ namespace HomeServiceBackend.Controllers
             return LastCoordinates;
         }
 
-
+        /// <summary>
+        /// Gives the last coordinate of employee by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getLastLocationById/{id}")]
         public Coordinates getLastLocationById(int id)
         {

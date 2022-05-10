@@ -17,8 +17,13 @@ namespace HomeServiceBackend.Controllers
         {
             db = context;
         }
-        
+
         // План
+
+        /// <summary>
+        /// Create new plan.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("addPlan")]
         public void addPlan([FromBody] forAddPlan planandemps)
         {
@@ -35,6 +40,10 @@ namespace HomeServiceBackend.Controllers
             }
         }
 
+        /// <summary>
+        /// Update plan by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpPut("updatePlan/{id}")]
         public void updatePlan(int id, [FromBody] forAddPlan planandemps)
         {
@@ -58,6 +67,10 @@ namespace HomeServiceBackend.Controllers
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Delete plan by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete("deletePlan/{id}")]
         public void deletePlan(int id)
         {
@@ -77,21 +90,32 @@ namespace HomeServiceBackend.Controllers
             }
         }
 
+        /// <summary>
+        /// Executes the plan and creates the fact.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("addFactFromPlan")]
         public void addFactFromPlan([FromBody] Plans plan)
         {
-            var newfact = new Facts();
-            newfact.planid = plan.id;
-            newfact.workid = plan.workid;
-            newfact.propertyid = plan.propertyid;
-            newfact.date = plan.date;
-            newfact.count = plan.count;
-            newfact.number_of_people = plan.number_of_people;
-            newfact.hours = plan.hours;
+            var newfact = new Facts
+            {
+                planid = plan.id,
+                workid = plan.workid,
+                propertyid = plan.propertyid,
+                date = plan.date,
+                count = plan.count,
+                number_of_people = plan.number_of_people,
+                hours = plan.hours
+            };
             db.facts.Add(newfact);
+            db.plans.SingleOrDefault(x => x.id == plan.id).deleted = true;
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Gives all plans data.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getAllPlans")]
         public IEnumerable<PlanInfo> getAllPlans()
         {
@@ -128,6 +152,10 @@ namespace HomeServiceBackend.Controllers
             return plans_with_emps;
         }
 
+        /// <summary>
+        /// Gives plans data by date.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getPlansByDate/{date}")]
         public IEnumerable<PlanInfo> getPlansByDate(DateTime date)
         {
@@ -172,6 +200,10 @@ namespace HomeServiceBackend.Controllers
             return plans_with_emps;
         }
 
+        /// <summary>
+        /// Gives plans data by ID of employee.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getPlanByEmployeeId/{id}")]
         public IEnumerable<PlanInfo> getPlanByEmployeeId(int id)
         {
@@ -211,6 +243,10 @@ namespace HomeServiceBackend.Controllers
             return plans_with_emps;
         }
 
+        /// <summary>
+        /// Gives plans data by ID of employee and date.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getPlansByDateAndEmployeeId/{date}&&{id}")]
         public IEnumerable<PlanInfo> getPlansByDateAndEmployeeId(DateTime date, int id)
         {

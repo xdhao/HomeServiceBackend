@@ -18,6 +18,10 @@ namespace HomeServiceBackend.Controllers
             db = context;
         }
 
+        /// <summary>
+        /// Gives the number of executions of work by time period.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getWorksPerfomanceRatio/{startdate}&&{enddate}")]
         public dynamic getWorksPerfomanceRatio(DateTime startdate, DateTime enddate)
         {
@@ -51,6 +55,10 @@ namespace HomeServiceBackend.Controllers
                 return "No data available for current year/date range";
         }
 
+        /// <summary>
+        /// Gives the number of jobs on workweek and weekends.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getWorkingDays/{startdate}&&{enddate}")]
         public dynamic getWorkingDays(DateTime startdate, DateTime enddate)
         {
@@ -80,7 +88,10 @@ namespace HomeServiceBackend.Controllers
                 return "No data available for current year/date range";
         }
 
-
+        /// <summary>
+        /// Gives the number of hours spent on work  for each month.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("countAllWorksHours/{year}")]
         public dynamic countAllWorksHours(int year)
         {
@@ -116,6 +127,10 @@ namespace HomeServiceBackend.Controllers
                 return "No data available for current year/date range";
         }
 
+        /// <summary>
+        /// Gives the number of hours spent on work for each month by ID of work.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("countWorkHoursById/{id}&&{year}")]
         public dynamic countWorkHoursById(int id, int year)
         {
@@ -148,6 +163,10 @@ namespace HomeServiceBackend.Controllers
                 return "No data available for current year/date range";
         }
 
+        /// <summary>
+        /// Gives the scope of work spent on work for each month.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("countAllWorksScope/{year}")]
         public dynamic countAllWorksScope(int year)
         {
@@ -183,6 +202,10 @@ namespace HomeServiceBackend.Controllers
                 return "No data available for current year/date range";
         }
 
+        /// <summary>
+        /// Gives the scope of work spent on work for each month by ID of work.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("countWorkScopeById/{id}&&{year}")]
         public dynamic countWorkScopeById(int id, int year)
         {
@@ -215,6 +238,10 @@ namespace HomeServiceBackend.Controllers
                 return "No data available for current year/date range"; ;
         }
 
+        /// <summary>
+        /// Gives the time spent by the employees on the movement for each month.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("countMovingTimeAllEmployees/{year}")]
         public dynamic countMovingTimeAllEmployees(int year)
         {
@@ -263,6 +290,10 @@ namespace HomeServiceBackend.Controllers
                 return "No data available for current year/date range"; ;
         }
 
+        /// <summary>
+        /// Gives the time spent by the employee on the movement for each month by ID of employee.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("countMovingTimeByEmployeeId/{id}&&{year}")]
         public dynamic countMovingTimeByEmployeeId(int id, int year)
         {

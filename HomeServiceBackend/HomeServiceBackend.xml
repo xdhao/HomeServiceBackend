@@ -1,0 +1,374 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HomeServiceBackend</name>
+    </assembly>
+    <members>
+        <member name="M:HomeServiceBackend.Controllers.AnaliticController.getWorksPerfomanceRatio(System.DateTime,System.DateTime)">
+            <summary>
+            Gives the number of executions of work by time period.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.AnaliticController.getWorkingDays(System.DateTime,System.DateTime)">
+            <summary>
+            Gives the number of jobs on workweek and weekends.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.AnaliticController.countAllWorksHours(System.Int32)">
+            <summary>
+            Gives the number of hours spent on work  for each month.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.AnaliticController.countWorkHoursById(System.Int32,System.Int32)">
+            <summary>
+            Gives the number of hours spent on work for each month by ID of work.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.AnaliticController.countAllWorksScope(System.Int32)">
+            <summary>
+            Gives the scope of work spent on work for each month.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.AnaliticController.countWorkScopeById(System.Int32,System.Int32)">
+            <summary>
+            Gives the scope of work spent on work for each month by ID of work.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.AnaliticController.countMovingTimeAllEmployees(System.Int32)">
+            <summary>
+            Gives the time spent by the employees on the movement for each month.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.AnaliticController.countMovingTimeByEmployeeId(System.Int32,System.Int32)">
+            <summary>
+            Gives the time spent by the employee on the movement for each month by ID of employee.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.FactController.getAllFacts">
+            <summary>
+            Gives all facts data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.FactController.getFactByEmployeeId(System.Int32)">
+            <summary>
+            Gives facts data by ID of employee.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.FactController.getFactsByDate(System.DateTime)">
+            <summary>
+            Gives facts data by date.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.FactController.getFactsByDateAndEmployeeId(System.DateTime,System.Int32)">
+            <summary>
+            Gives facts data by ID of employee and date.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.FactController.addFact(HomeServiceBackend.Models.forAddPlan)">
+            <summary>
+            Create new fact.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.FactController.deleteFact(System.Int32)">
+            <summary>
+            Delete fact by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.PlanController.addPlan(HomeServiceBackend.Models.forAddPlan)">
+            <summary>
+            Create new plan.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.PlanController.updatePlan(System.Int32,HomeServiceBackend.Models.forAddPlan)">
+            <summary>
+            Update plan by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.PlanController.deletePlan(System.Int32)">
+            <summary>
+            Delete plan by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.PlanController.addFactFromPlan(HomeServiceBackend.Models.Plans)">
+            <summary>
+            Executes the plan and creates the fact.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.PlanController.getAllPlans">
+            <summary>
+            Gives all plans data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.PlanController.getPlansByDate(System.DateTime)">
+            <summary>
+            Gives plans data by date.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.PlanController.getPlanByEmployeeId(System.Int32)">
+            <summary>
+            Gives plans data by ID of employee.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.PlanController.getPlansByDateAndEmployeeId(System.DateTime,System.Int32)">
+            <summary>
+            Gives plans data by ID of employee and date.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.getClientById(System.Int32)">
+            <summary>
+            Gives client data by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.getEmployeeById(System.Int32)">
+            <summary>
+            Gives employee data by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.getPropertyById(System.Int32)">
+            <summary>
+            Gives property data by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.getUnitById(System.Int32)">
+            <summary>
+            Gives unit data by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.getTypeofWorkById(System.Int32)">
+            <summary>
+            Gives type of work data by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.getWorkById(System.Int32)">
+            <summary>
+            Gives work data by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.getFunctionById(System.Int32)">
+            <summary>
+            Gives function data by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.getAllClients">
+            <summary>
+            Gives all clients data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.getAllEmployees">
+            <summary>
+            Gives all employees data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.getAllPropertys">
+            <summary>
+            Gives all propertys data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.getAllUnits">
+            <summary>
+            Gives all units data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.getAllTypesofWork">
+            <summary>
+            Gives all types of work data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.getAllWorks">
+            <summary>
+            Gives all works data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.getAllFunctions">
+            <summary>
+            Gives all functions data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.addClient(HomeServiceBackend.Models.Clients)">
+            <summary>
+            Create new client.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.addEmployee(HomeServiceBackend.Models.Employees)">
+            <summary>
+            Create new employee.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.addProperty(HomeServiceBackend.Models.Propertys)">
+            <summary>
+            Create new property.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.addUnit(HomeServiceBackend.Models.Units)">
+            <summary>
+            Create new unit.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.addTypeofWork(HomeServiceBackend.Models.Types_of_work)">
+            <summary>
+            Create new type of work.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.addWork(HomeServiceBackend.Models.Works)">
+            <summary>
+            Create new work.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.addFunction(HomeServiceBackend.Models.Employees_functions)">
+            <summary>
+            Create new function.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.updateClient(System.Int32,HomeServiceBackend.Models.Clients)">
+            <summary>
+            Update client by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.updateEmployee(System.Int32,HomeServiceBackend.Models.Employees)">
+            <summary>
+            Update employee by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.updateProperty(System.Int32,HomeServiceBackend.Models.Propertys)">
+            <summary>
+            Update property by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.updateUnit(System.Int32,HomeServiceBackend.Models.Units)">
+            <summary>
+            Update unit by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.updateTypeofWork(System.Int32,HomeServiceBackend.Models.Types_of_work)">
+            <summary>
+            Update type of work by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.updateWork(System.Int32,HomeServiceBackend.Models.Works)">
+            <summary>
+            Update work by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.updateFunction(System.Int32,HomeServiceBackend.Models.Employees_functions)">
+            <summary>
+            Update function by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.deleteClient(System.Int32)">
+            <summary>
+            Delete client by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.deleteEmployee(System.Int32)">
+            <summary>
+            Delete employee by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.deleteProperty(System.Int32)">
+            <summary>
+            Delete property by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.deleteUnit(System.Int32)">
+            <summary>
+            Delete unit by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.deleteTypeofWork(System.Int32)">
+            <summary>
+            Delete type of work by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.deleteWork(System.Int32)">
+            <summary>
+            Delete work by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.deleteFunction(System.Int32)">
+            <summary>
+            Delete function by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.TrackingController.getRoutesByEmployeeId(System.Int32)">
+            <summary>
+            Gives the routes by ID of employee.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.TrackingController.getRoutesByPlanId(System.Int32)">
+            <summary>
+            Gives the routes by ID of plan.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.TrackingController.getLastLocationAll">
+            <summary>
+            Gives the last coordinate of each employee.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeServiceBackend.Controllers.TrackingController.getLastLocationById(System.Int32)">
+            <summary>
+            Gives the last coordinate of employee by his ID.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

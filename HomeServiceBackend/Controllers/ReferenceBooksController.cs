@@ -21,12 +21,21 @@ namespace HomeServiceBackend.Controllers
         // Справочники - CRUD
 
         // READ by id
+
+        /// <summary>
+        /// Gives client data by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getClientById/{id}")]
         public Clients getClientById(int id)
         {
             return db.clients.SingleOrDefault(x => x.id == id);
         }
 
+        /// <summary>
+        /// Gives employee data by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getEmployeeById/{id}")]
         public dynamic getEmployeeById(int id)
         {
@@ -37,6 +46,10 @@ namespace HomeServiceBackend.Controllers
             return res;
         }
 
+        /// <summary>
+        /// Gives property data by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getPropertyById/{id}")]
         public dynamic getPropertyById(int id)
         {
@@ -48,18 +61,30 @@ namespace HomeServiceBackend.Controllers
             return res;
         }
 
+        /// <summary>
+        /// Gives unit data by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getUnitById/{id}")]
         public Units getUnitById(int id)
         {
             return db.units.SingleOrDefault(x => x.id == id);
         }
 
+        /// <summary>
+        /// Gives type of work data by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getTypeofWorkById/{id}")]
         public Types_of_work getTypeofWorkById(int id)
         {
             return db.types_of_work.SingleOrDefault(x => x.id == id);
         }
 
+        /// <summary>
+        /// Gives work data by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getWorkById/{id}")]
         public dynamic getWorkById(int id)
         {
@@ -72,6 +97,10 @@ namespace HomeServiceBackend.Controllers
             return res;
         }
 
+        /// <summary>
+        /// Gives function data by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getFunctionById/{id}")]
         public Employees_functions getFunctionById(int id)
         {
@@ -79,12 +108,21 @@ namespace HomeServiceBackend.Controllers
         }
 
         // READ
+
+        /// <summary>
+        /// Gives all clients data.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getAllClients")]
         public IEnumerable<Clients> getAllClients()
         {
             return db.clients.Where(x => x.deleted == false);
         }
 
+        /// <summary>
+        /// Gives all employees data.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getAllEmployees")]
         public dynamic getAllEmployees()
         {
@@ -103,6 +141,10 @@ namespace HomeServiceBackend.Controllers
             return res;
         }
 
+        /// <summary>
+        /// Gives all propertys data.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getAllPropertys")]
         public dynamic getAllPropertys()
         {
@@ -120,18 +162,30 @@ namespace HomeServiceBackend.Controllers
             return res;
         }
 
+        /// <summary>
+        /// Gives all units data.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getAllUnits")]
         public IEnumerable<Units> getAllUnits()
         {
             return db.units.Where(x => x.deleted == false);
         }
 
+        /// <summary>
+        /// Gives all types of work data.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getAllTypesofWork")]
         public IEnumerable<Types_of_work> getAllTypesofWork()
         {
             return db.types_of_work.Where(x => x.deleted == false);
         }
 
+        /// <summary>
+        /// Gives all works data.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getAllWorks")]
         public dynamic getAllWorks()
         {
@@ -150,6 +204,10 @@ namespace HomeServiceBackend.Controllers
             return res;
         }
 
+        /// <summary>
+        /// Gives all functions data.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getAllFunctions")]
         public IEnumerable<Employees_functions> getAllFunctions()
         {
@@ -157,6 +215,11 @@ namespace HomeServiceBackend.Controllers
         }
 
         // CREATE
+
+        /// <summary>
+        /// Create new client.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("addClient")]
         public void addClient([FromBody] Clients client)
         {
@@ -165,6 +228,10 @@ namespace HomeServiceBackend.Controllers
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Create new employee.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("addEmployee")]
         public void addEmployee([FromBody] Employees employee)
         {
@@ -173,6 +240,10 @@ namespace HomeServiceBackend.Controllers
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Create new property.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("addProperty")]
         public void addProperty([FromBody] Propertys property)
         {
@@ -180,6 +251,10 @@ namespace HomeServiceBackend.Controllers
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Create new unit.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("addUnit")]
         public void addUnit([FromBody] Units unit)
         {
@@ -187,6 +262,10 @@ namespace HomeServiceBackend.Controllers
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Create new type of work.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("addTypeofWork")]
         public void addTypeofWork([FromBody] Types_of_work type_of_work)
         {
@@ -194,6 +273,10 @@ namespace HomeServiceBackend.Controllers
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Create new work.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("addWork")]
         public void addWork([FromBody] Works work)
         {
@@ -201,6 +284,10 @@ namespace HomeServiceBackend.Controllers
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Create new function.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("addFunction")]
         public void addFunction([FromBody] Employees_functions employee_function)
         {
@@ -208,6 +295,10 @@ namespace HomeServiceBackend.Controllers
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Update client by his ID.
+        /// </summary>
+        /// <returns></returns>
         // UPDATE 
         [HttpPut("updateClient/{id}")]
         public void updateClient(int id, [FromBody] Clients client)
@@ -218,6 +309,10 @@ namespace HomeServiceBackend.Controllers
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Update employee by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpPut("updateEmployee/{id}")]
         public void updateEmployee(int id, [FromBody] Employees employee)
         {
@@ -227,6 +322,10 @@ namespace HomeServiceBackend.Controllers
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Update property by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpPut("updateProperty/{id}")]
         public void updateProperty(int id, [FromBody] Propertys property)
         {
@@ -235,6 +334,10 @@ namespace HomeServiceBackend.Controllers
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Update unit by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpPut("updateUnit/{id}")]
         public void updateUnit(int id, [FromBody] Units unit)
         {
@@ -243,6 +346,10 @@ namespace HomeServiceBackend.Controllers
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Update type of work by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpPut("updateTypeofWork/{id}")]
         public void updateTypeofWork(int id, [FromBody] Types_of_work type_of_work)
         {
@@ -251,6 +358,10 @@ namespace HomeServiceBackend.Controllers
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Update work by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpPut("updateWork/{id}")]
         public void updateWork(int id, [FromBody] Works work)
         {
@@ -259,6 +370,10 @@ namespace HomeServiceBackend.Controllers
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Update function by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpPut("updateFunction/{id}")]
         public void updateFunction(int id, [FromBody] Employees_functions employee_function)
         {
@@ -269,6 +384,11 @@ namespace HomeServiceBackend.Controllers
 
 
         // DELETE
+
+        /// <summary>
+        /// Delete client by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete("deleteClient/{id}")]
         public void deleteClient(int id)
         {
@@ -281,6 +401,10 @@ namespace HomeServiceBackend.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete employee by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete("deleteEmployee/{id}")]
         public void deleteEmployee(int id)
         {
@@ -293,6 +417,10 @@ namespace HomeServiceBackend.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete property by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete("deleteProperty/{id}")]
         public void deleteProperty(int id)
         {
@@ -305,6 +433,10 @@ namespace HomeServiceBackend.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete unit by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete("deleteUnit/{id}")]
         public void deleteUnit(int id)
         {
@@ -317,6 +449,10 @@ namespace HomeServiceBackend.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete type of work by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete("deleteTypeofWork/{id}")]
         public void deleteTypeofWork(int id)
         {
@@ -329,6 +465,10 @@ namespace HomeServiceBackend.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete work by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete("deleteWork/{id}")]
         public void deleteWork(int id)
         {
@@ -341,6 +481,10 @@ namespace HomeServiceBackend.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete function by his ID.
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete("deleteFunction/{id}")]
         public void deleteFunction(int id)
         {

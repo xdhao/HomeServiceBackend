@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-
+using System.IO;
 
 namespace HomeServiceBackend
 {
@@ -41,6 +41,8 @@ namespace HomeServiceBackend
                     Title = "Test API", 
                     Description = "ASP.NET Core Web API"
                 });
+                var filePath = Path.Combine(System.AppContext.BaseDirectory, "HomeServiceBackend.xml");
+                c.IncludeXmlComments(filePath);
             });
         }
 
