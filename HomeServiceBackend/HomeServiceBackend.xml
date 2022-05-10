@@ -88,6 +88,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:HomeServiceBackend.Controllers.FactController.updateFact(System.Int32,HomeServiceBackend.Models.forAddPlan)">
+            <summary>
+            Update fact by his ID.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:HomeServiceBackend.Controllers.PlanController.addPlan(HomeServiceBackend.Models.forAddPlan)">
             <summary>
             Create new plan.

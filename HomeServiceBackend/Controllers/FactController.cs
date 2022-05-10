@@ -349,5 +349,42 @@ namespace HomeServiceBackend.Controllers
                 db.SaveChanges();
             }
         }
+
+        /// <summary>
+        /// Update fact by his ID.
+        /// </summary>
+        /// <returns></returns>
+        [HttpPut("updateFact/{id}")]
+        public void updateFact(int id, [FromBody] forAddPlan planandemps)
+        {
+            foreach (var f in db.employee_to_plan)
+            {
+                if (f.planid == planandemps.plan.id)
+                {
+                    db.employee_to_plan.Remove(f);
+                }
+            }
+            if (planandemps.empids.Count > 0)
+            {
+                foreach (int empid in planandemps.empids)
+                {
+                    var emt = new Employee_to_plan(planandemps.plan.id, empid);
+                    db.employee_to_plan.Add(emt);
+                }
+            }
+            var fact = new Facts
+            {
+                id = id,
+                planid = planandemps.plan.id,
+                workid = planandemps.plan.workid,
+                propertyid = planandemps.plan.propertyid,
+                date = planandemps.plan.date,
+                count = planandemps.plan.count,
+                number_of_people = planandemps.plan.number_of_people,
+                hours = planandemps.plan.hours
+            };
+            db.facts.Update(fact);
+            db.SaveChanges();
+        }
     }
 }

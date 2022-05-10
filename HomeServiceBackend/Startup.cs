@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
+using System.Reflection;
 
 namespace HomeServiceBackend
 {
@@ -35,14 +36,17 @@ namespace HomeServiceBackend
 
             services.AddSwaggerGen(c =>
             {
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
                     Version = "v1",
                     Title = "Test API", 
                     Description = "ASP.NET Core Web API"
                 });
-                var filePath = Path.Combine(System.AppContext.BaseDirectory, "HomeServiceBackend.xml");
-                c.IncludeXmlComments(filePath);
+
             });
         }
 
