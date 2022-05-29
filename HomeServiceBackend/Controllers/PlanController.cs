@@ -293,5 +293,40 @@ namespace HomeServiceBackend.Controllers
             }
             return plans_with_emps;
         }
+
+        /// <summary>
+        /// Gives plan data by ID.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("getPlansById/{id}")]
+        public PlanInfo getPlansById(int id)
+        {
+            Plans qplan = db.plans.SingleOrDefault(x => x.id == id);
+            PlanInfo planinfo = new PlanInfo();
+            planinfo.plan = new
+            {
+                Plan = qplan,
+                Workname = db.works.SingleOrDefault(x => x.id == qplan.workid).name
+            };
+            planinfo.employees = new List<dynamic>();
+            planinfo.property = db.propertys.SingleOrDefault(x => x.id == qplan.propertyid);
+            planinfo.client = db.clients.SingleOrDefault(x => x.id == planinfo.property.client_id);
+            var emptoplan = db.employee_to_plan.ToList();
+            foreach (var epid in emptoplan)
+            {
+                if (qplan.id == epid.planid)
+                {
+                    var empx =
+                    new
+                    {
+                        Employee = db.employees.SingleOrDefault(x => x.id == epid.employeeid),
+                        Employees_functions = db.employees_functions.SingleOrDefault
+                        (x => x.id == db.employees.SingleOrDefault(x => x.id == epid.employeeid).function_id).name
+                    };
+                    planinfo.employees.Add(empx);
+                }
+            }
+            return planinfo;
+        }
     }
 }

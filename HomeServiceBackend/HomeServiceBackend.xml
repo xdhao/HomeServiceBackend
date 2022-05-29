@@ -142,6 +142,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:HomeServiceBackend.Controllers.PlanController.getPlansById(System.Int32)">
+            <summary>
+            Gives plan data by ID.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:HomeServiceBackend.Controllers.ReferenceBooksController.getClientById(System.Int32)">
             <summary>
             Gives client data by his ID.

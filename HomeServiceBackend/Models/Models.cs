@@ -54,6 +54,7 @@ namespace HomeServiceBackend.Models
         public string email { get; set; }
         public string phone_number { get; set; }
         public bool deleted { get; set; }
+        public string password { get; set; }
     }
 
     public class Facts

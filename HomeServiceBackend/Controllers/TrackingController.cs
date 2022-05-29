@@ -20,6 +20,10 @@ namespace HomeServiceBackend.Controllers
 
         //Маршруты и координаты
 
+
+        /*
+         * Возвращает все маршруты конкретного работника.
+         */
         /// <summary>
         /// Gives the routes by ID of employee.
         /// </summary>
@@ -88,6 +92,10 @@ namespace HomeServiceBackend.Controllers
 
         }
 
+
+        /*
+         * Возвращает все маршруты, связанные с конкретным планом.
+         */
         /// <summary>
         /// Gives the routes by ID of plan.
         /// </summary>
@@ -156,6 +164,9 @@ namespace HomeServiceBackend.Controllers
 
         }
 
+        /*
+         * Возвращает координаты последнего местонахождения каждого из работников.
+         */
         /// <summary>
         /// Gives the last coordinate of each employee.
         /// </summary>
@@ -191,6 +202,9 @@ namespace HomeServiceBackend.Controllers
             return LastCoordinates;
         }
 
+        /*
+         * Возвращает координаты последнего местонахождения конкретного работника.
+         */
         /// <summary>
         /// Gives the last coordinate of employee by his ID.
         /// </summary>

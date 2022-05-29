@@ -18,6 +18,10 @@ namespace HomeServiceBackend.Controllers
             db = context;
         }
 
+
+        /*
+         Возвращает кол-во выполнений работ в заданный период. Выводятся лишь те работы, которые имеют хотя бы одно выполнение за указанный промежуток.
+         */
         /// <summary>
         /// Gives the number of executions of work by time period.
         /// </summary>
@@ -55,6 +59,9 @@ namespace HomeServiceBackend.Controllers
                 return "No data available for current year/date range";
         }
 
+        /*
+         * Возвращает кол-во выполненных работ в выходные и рабочие дни в указанный промежуток.
+         */
         /// <summary>
         /// Gives the number of jobs on workweek and weekends.
         /// </summary>
@@ -88,6 +95,11 @@ namespace HomeServiceBackend.Controllers
                 return "No data available for current year/date range";
         }
 
+
+        /*
+         * Возвращает количество затраченных на выполнение каждой работы часов за каждый месяц указанного года. 
+         * Вывод значений производится лишь для тех работ, которые выполнялись хотя бы раз.
+         */
         /// <summary>
         /// Gives the number of hours spent on work  for each month.
         /// </summary>
@@ -127,6 +139,10 @@ namespace HomeServiceBackend.Controllers
                 return "No data available for current year/date range";
         }
 
+
+        /*
+         * Возвращает количество затраченных на выполнений конкретной работы часов за каждый месяц указанного года.
+         */
         /// <summary>
         /// Gives the number of hours spent on work for each month by ID of work.
         /// </summary>
@@ -163,6 +179,11 @@ namespace HomeServiceBackend.Controllers
                 return "No data available for current year/date range";
         }
 
+
+        /*
+         *  Возвращает объем выполнения каждой работы за каждый месяц указанного года.
+         *  Вывод значений производится лишь для тех работ, которые выполнялись хотя бы раз.
+         */
         /// <summary>
         /// Gives the scope of work spent on work for each month.
         /// </summary>
@@ -202,6 +223,10 @@ namespace HomeServiceBackend.Controllers
                 return "No data available for current year/date range";
         }
 
+
+        /*
+         * Возвращает объем выполнения конкретной работы за каждый месяц указанного года.
+         */
         /// <summary>
         /// Gives the scope of work spent on work for each month by ID of work.
         /// </summary>
@@ -238,6 +263,11 @@ namespace HomeServiceBackend.Controllers
                 return "No data available for current year/date range"; ;
         }
 
+
+        /*
+         * Возвращает количество затраченного на дорогу каждым работником времени за каждый месяц указанного года. 
+         * Вывод значений производится лишь для тех работников, которые проделали хотя бы один маршрут.
+         */
         /// <summary>
         /// Gives the time spent by the employees on the movement for each month.
         /// </summary>
@@ -290,6 +320,10 @@ namespace HomeServiceBackend.Controllers
                 return "No data available for current year/date range"; ;
         }
 
+
+        /*
+         * Возвращает количество затраченного на дорогу конкретным работником времени за каждый месяц указанного года.
+         */
         /// <summary>
         /// Gives the time spent by the employee on the movement for each month by ID of employee.
         /// </summary>
